@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="打羽毛球吗">
+  <meta name="description" content="随缘写，太麻烦了 Let it go">
 <meta property="og:type" content="website">
 <meta property="og:title" content="JiahaoChen">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="JiahaoChen">
-<meta property="og:description" content="打羽毛球吗">
+<meta property="og:description" content="随缘写，太麻烦了 Let it go">
 <meta property="og:locale">
 <meta property="article:author" content="JiahaoChen">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_1483.jpg">
       <meta itemprop="name" content="JiahaoChen">
-      <meta itemprop="description" content="打羽毛球吗">
+      <meta itemprop="description" content="随缘写，太麻烦了 Let it go">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-06 15:37:20" itemprop="dateModified" datetime="2020-08-06T15:37:20+10:00">2020-08-06</time>
+                <time title="Modified: 2020-08-13 23:26:38" itemprop="dateModified" datetime="2020-08-13T23:26:38+10:00">2020-08-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,61 +224,14 @@
       
           <h1 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a><em>Quick Sort</em></h1><h2 id="1-Sort-Colors"><a href="#1-Sort-Colors" class="headerlink" title="1.Sort Colors"></a>1.Sort Colors</h2><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Given an array with <em>n</em> objects colored red, white or blue, sort them <strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/In-place_algorithm">in-place</a></strong> so that objects of the same color are adjacent, with the colors in the order red, white and blue.</p>
 <p>Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.</p>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,0,2,1,1,0]</span><br><span class="line">Output: [0,0,1,1,2,2]</span><br></pre></td></tr></table></figure>
-
-<h3 id="Thinkings"><a href="#Thinkings" class="headerlink" title="Thinkings"></a>Thinkings</h3><h4 id="1-Classification"><a href="#1-Classification" class="headerlink" title="1.Classification"></a>1.Classification</h4><p>left part( &lt; 1) , middle part( = 1) , right part( &gt; 1)</p>
-<h4 id="2-Three-variables-represents-index"><a href="#2-Three-variables-represents-index" class="headerlink" title="2.Three variables represents index"></a>2.Three variables represents index</h4><p>​     l :  The elements to the left of this index are all less than 1.<br>​     r :  The elements to the right of this index are all greater than 1.<br>​     n :  Unclassified</p>
-<h4 id="3-Initialization"><a href="#3-Initialization" class="headerlink" title="3.Initialization"></a>3.Initialization</h4><p>​     l  : 0<br>​     r :  len(nums) - 1<br>​     n : 0 means beginning</p>
-<h4 id="4-Process"><a href="#4-Process" class="headerlink" title="4.Process"></a>4.Process</h4><p>​    Traverse the list through index “n”, and classify nums[n]:<br>​    &emsp;If nums[n] is less than 1, swap with nums[l] and “l” forward.<br>​    &emsp;If nums[n] is greater than 1, swap with nums[r] and “r” backward.<br>​    &emsp;If nums[n] is equal to 1, do nothing.<br>​    It’s over when “n” meets “r”.</p>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sortColors</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        l, n, r = <span class="number">0</span>, <span class="number">0</span>, len(nums)<span class="number">-1</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">while</span> n &lt;= r:</span><br><span class="line">            <span class="keyword">if</span> nums[n] &lt; <span class="number">1</span>:</span><br><span class="line">                nums[l], nums[n] = nums[n], nums[l]</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">                n += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">            <span class="keyword">elif</span> nums[n] &gt; <span class="number">1</span>:</span><br><span class="line">                nums[r], nums[n] = nums[n], nums[r]</span><br><span class="line">                r -= <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                n += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
-
-<h3 id="Algroithm"><a href="#Algroithm" class="headerlink" title="Algroithm"></a>Algroithm</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dutch_national_flag_problem">dutch partitioning problem</a></p>
-</blockquote>
-<h2 id="2-Recursion"><a href="#2-Recursion" class="headerlink" title="2.Recursion"></a>2.Recursion</h2><h3 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem"></a>Problem</h3><p>Use a similar algorithm and recursion to sort a sequence from small to large</p>
-<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><pre><code>    Input: [3,1,2,4,5]
-    Output:[1,2,3,4,5]</code></pre>
-<h3 id="Thinkings-1"><a href="#Thinkings-1" class="headerlink" title="Thinkings"></a>Thinkings</h3><ol>
-<li><p>Choose one number as the middle number</p>
-</li>
-<li><p>After swapping, make sure </p>
-<p>&nbsp;a. All elements in the left part are smaller than the middle</p>
-<p>&nbsp;b. All elements in the right part are greater than the middle</p>
-</li>
-<li><p>Recursion</p>
-<p>&ensp;Use the same method to sort the left and right parts separately</p>
-</li>
-</ol>
-<p><strong>Key</strong></p>
-<p>Q : How to choose the middle number and achieve step 2 ?</p>
-<p>A : </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select the leftmost as the middle number.</span></span><br><span class="line">middle number = nums[<span class="number">0</span>] = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">left, right = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">i, j = left, right</span><br><span class="line"></span><br><span class="line"><span class="comment"># Step 1</span></span><br><span class="line"><span class="comment"># If ”j“ can keep walking to the left，</span></span><br><span class="line"><span class="comment"># two conditions need to be met，otherwise suspended.</span></span><br><span class="line">   <span class="comment"># 1.&quot;j&quot; is greater than &quot;i&quot;</span></span><br><span class="line">   <span class="comment"># 2.The element currently pointed to by &quot;j&quot; is </span></span><br><span class="line">   <span class="comment">#   greater than or equal to the middle number</span></span><br><span class="line">  </span><br><span class="line">                      [<span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line">                       i           j</span><br><span class="line"></span><br><span class="line"><span class="comment"># Step 2</span></span><br><span class="line"><span class="comment"># If ”i“ can keep walking to the right</span></span><br><span class="line"><span class="comment"># two conditions need to be met，otherwise suspended.</span></span><br><span class="line">   <span class="comment"># 1.&quot;i&quot; is smaller than &quot;j&quot;</span></span><br><span class="line">   <span class="comment"># 2.The element currently pointed to by &quot;i&quot; is</span></span><br><span class="line">   <span class="comment">#   less than or equal to the middle number</span></span><br><span class="line">    </span><br><span class="line">                      [<span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line">                          i        j</span><br><span class="line">  </span><br><span class="line"> <span class="comment"># Exchange elements pointed to by i and j</span></span><br><span class="line"></span><br><span class="line">                      [<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">                          i        j</span><br><span class="line">  </span><br><span class="line"> <span class="comment"># Repeat the above steps until i euqals to j</span></span><br><span class="line">                  <span class="comment">#  &quot;j&quot; firstly moves</span></span><br><span class="line">  </span><br><span class="line">                      [<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">                          i     j</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">                      [<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">                          i  j  </span><br><span class="line">        </span><br><span class="line">                  <span class="comment">#  Then &quot;i&quot;</span></span><br><span class="line">          </span><br><span class="line">                      [<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line">                             j</span><br><span class="line">                             i</span><br><span class="line">                </span><br><span class="line">                  <span class="comment">#  When &quot;i&quot; meets &quot;j&quot;, end.</span></span><br><span class="line">                  </span><br><span class="line"> <span class="comment"># Swap the leftmost one (middle number) with the element pointed to by &quot;j&quot;</span></span><br><span class="line"></span><br><span class="line">                      [<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">                             j </span><br><span class="line">                             i</span><br><span class="line">      </span><br><span class="line"> <span class="comment"># For the middle number 3, the numbers on the left are smaller than it, and the numbers on the right are larger than it.</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickSort</span>(<span class="params">nums, l, r</span>):</span></span><br><span class="line">    <span class="keyword">if</span> l &gt; r: </span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    i, j = l, r</span><br><span class="line">    middle = nums[l]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> i &lt; j:</span><br><span class="line">        <span class="keyword">while</span> j &gt; i <span class="keyword">and</span> nums[j] &gt;= middle: j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[i] &lt;= middle: i += <span class="number">1</span></span><br><span class="line">        nums[i], nums[j] = nums[j], nums[i]</span><br><span class="line">        </span><br><span class="line">    nums[j], nums[l] = nums[l], nums[j]</span><br><span class="line">    quickSort(nums, l, i<span class="number">-1</span>)</span><br><span class="line">    quickSort(nums, i+<span class="number">1</span>, r)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Algrithm"><a href="#Algrithm" class="headerlink" title="Algrithm"></a>Algrithm</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Quicksort">Quicksort - Wikipediaen.wikipedia.org › wiki › Quicksort</a></p>
-</blockquote>
-<h3 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/kth-largest-element-in-an-array">Kth Largest Element in an Array</a></p>
-</blockquote>
-<h4 id="Other-way"><a href="#Other-way" class="headerlink" title="Other way"></a>Other way</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> q[], <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = l - <span class="number">1</span>, j = r + <span class="number">1</span>, x = q[l + r &gt;&gt; <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">do</span> i ++ ; <span class="keyword">while</span> (q[i] &lt; x);</span><br><span class="line">        <span class="keyword">do</span> j -- ; <span class="keyword">while</span> (q[j] &gt; x);</span><br><span class="line">        <span class="keyword">if</span> (i &lt; j) swap(q[i], q[j]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    quick_sort(q, l, j);</span><br><span class="line">    quick_sort(q, j + <span class="number">1</span>, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-<p>​        </p>
-<p>​            </p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/04/quickSort/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -302,7 +255,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_1483.jpg">
       <meta itemprop="name" content="JiahaoChen">
-      <meta itemprop="description" content="打羽毛球吗">
+      <meta itemprop="description" content="随缘写，太麻烦了 Let it go">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -427,7 +380,7 @@
     <img class="site-author-image" itemprop="image" alt="JiahaoChen"
       src="/images/IMG_1483.jpg">
   <p class="site-author-name" itemprop="name">JiahaoChen</p>
-  <div class="site-description" itemprop="description">打羽毛球吗</div>
+  <div class="site-description" itemprop="description">随缘写，太麻烦了 Let it go</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -447,7 +400,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
