@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-21 15:41:48" itemprop="dateModified" datetime="2020-08-21T15:41:48+10:00">2020-08-21</time>
+                <time title="Modified: 2020-08-21 15:42:26" itemprop="dateModified" datetime="2020-08-21T15:42:26+10:00">2020-08-21</time>
               </span>
 
           
@@ -214,168 +214,14 @@
 
       
           <h1 id="1-One-dimensional-prefix-sum"><a href="#1-One-dimensional-prefix-sum" class="headerlink" title="1. One-dimensional prefix sum"></a>1. One-dimensional prefix sum</h1><h2 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h2><p>Given an array of integers and an integer <strong>k</strong>, you need to find the total number of continuous subarrays whose sum equals to <strong>k</strong>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:nums &#x3D; [1,1,1], k &#x3D; 2</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
-
-<p><strong>Constraints:</strong></p>
-<ul>
-<li>The length of the array is in range [1, 20,000].</li>
-<li>The range of numbers in the array is [-1000, 1000] and the range of the integer <strong>k</strong> is [-1e7, 1e7].</li>
-</ul>
-<h2 id="Thinkings"><a href="#Thinkings" class="headerlink" title="Thinkings"></a>Thinkings</h2><ol>
-<li><p>Use an array to store the sum accumulated from the beginning to a certain position.</p>
-<p>Example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nums &#x3D; [1,   2,   3  ]</span><br><span class="line">sum  &#x3D; [1, 1+2, 1+2+3]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>How to create array “sum” ?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum[i] &#x3D; sum[i - 1] + nums[i]</span><br></pre></td></tr></table></figure>
-
-<p>Q : If i == 0, the index is out of range. How to solve this problem ?</p>
-<p>A : Set the first element of the array “sum” to 0, and initialize the array “sum” <strong>from index 1 rather than 0</strong>.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,   <span class="number">2</span>,   <span class="number">3</span>  ]</span><br><span class="line">sum  = [<span class="number">0</span>,   <span class="number">1</span>,   <span class="number">1</span>+<span class="number">2</span>, <span class="number">1</span>+<span class="number">2</span>+<span class="number">3</span>] <span class="comment">// Also, the length of &quot;sum&quot; is one more than &quot;nums&quot;  </span></span><br><span class="line"></span><br><span class="line">sum[i] = sum[i - <span class="number">1</span>] + nums[i - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java Version</span></span><br><span class="line"><span class="keyword">int</span>[] sum = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">sum[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; (nums.length + <span class="number">1</span>); i++)</span><br><span class="line">  sum[i] = sum[i - <span class="number">1</span>] + nums[i - <span class="number">1</span>];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Using array “sum” to calculate the sum of a subarray</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sumOfSubarray = sum[end] - sum[start];</span><br></pre></td></tr></table></figure>
-
-<p>For example : </p>
-<p>&emsp;Caculate the sum of “nums” means using the last element of “sum” minus the first element of “sum” which is 0.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>] = sum[<span class="number">3</span>] - sum[<span class="number">0</span>] = <span class="number">6</span> - <span class="number">0</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Using array “sum”</strong> to caculate all possibilities .</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start &lt; sum.length; start++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> end = start + <span class="number">1</span>; end &lt; sum.length; end++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (sum[end] - sum[start] == k)</span><br><span class="line">                    count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">int</span>[] sum = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line">        sum[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums.length; i++)</span><br><span class="line">            sum[i] = sum[i - <span class="number">1</span>] + nums[i - <span class="number">1</span>];</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start &lt; sum.length; start++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> end = start + <span class="number">1</span>; end &lt; sum.length; end++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (sum[end] - sum[start] == k)</span><br><span class="line">                    count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Complexity-Analysis"><a href="#Complexity-Analysis" class="headerlink" title="Complexity Analysis"></a>Complexity Analysis</h2><ul>
-<li>Time complexity : <em>O(n<sup>2</sup>)</em>. </li>
-<li>Space complexity : <em>O(n)</em>.</li>
-</ul>
-<h2 id="Optimization-by-Hashmap"><a href="#Optimization-by-Hashmap" class="headerlink" title="Optimization by Hashmap"></a>Optimization by Hashmap</h2><h3 id="Thinkings-1"><a href="#Thinkings-1" class="headerlink" title="Thinkings"></a>Thinkings</h3><ol>
-<li><p>In the previous method</p>
-<p>Step 1.  The “nums” array is traversed to calculate all the elements of the sum array</p>
-<p>Step 2.  Use the nested loop to judge.</p>
-<p>key :  Can we judge when the array is traversed(Step 1) ?</p>
-</li>
-<li><p>Transposition</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] sum = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">sum[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> end = <span class="number">1</span>; end &lt; (nums.length + <span class="number">1</span>); end++)</span><br><span class="line">  sum[end] = sum[end - <span class="number">1</span>] + nums[end - <span class="number">1</span>];</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>Put each element of “sum” array into hashmap according to this format :  (<em>sum<sub>i</sub></em>, <em>number of occurence</em>)</p>
-</li>
-<li><p><strong>When constructing the “sum” array, we take the currently constructed element as sum[end], then all the elements before “end”  which have been calculated can be regarded as all sum[start] for this “end”.</strong></p>
-<p>Transform the judgment condition</p>
-<p>Obviously, when sum[end] is calculated, all its possible sum[start] are already in the map.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sum[end] - sum[start] &#x3D;&#x3D; k</span><br><span class="line"></span><br><span class="line">sum[end] - k &#x3D;&#x3D; sum[start]</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-</li>
-</ol>
-<ol start="3">
-<li><p>When <em>sum<sub>end</sub></em> is calculated, we only need to determine whether there is key == <em>sum<sub>end </sub></em> -  k in the hashmap and add the number of occurence to the answer.</p>
-<p><strong>Attention : In the previous method, we set the first element of sum to 0. Similarly, we put it in the hashmap, which is (0, 1).</strong></p>
-</li>
-</ol>
-<h3 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">        HashMap &lt; Integer, Integer &gt; map = <span class="keyword">new</span> HashMap &lt; &gt; ();</span><br><span class="line">        map.put(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            <span class="keyword">if</span> (map.containsKey(sum - k))</span><br><span class="line">                count += map.get(sum - k);</span><br><span class="line">            map.put(sum, map.getOrDefault(sum, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Complexity-Anaysis"><a href="#Complexity-Anaysis" class="headerlink" title="Complexity Anaysis"></a>Complexity Anaysis</h3><ul>
-<li>Time complexity : <em>O(n)</em>. The entire nums array is traversed only once.</li>
-<li>Space complexity : <em>O(n)</em>. Hashmap map can contain upto n distinct entries in the worst case.</li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/subarray-sum-equals-k/">https://leetcode.com/problems/subarray-sum-equals-k/</a></p>
-</blockquote>
-<h1 id="2-Two-dimensional-prefix-sum"><a href="#2-Two-dimensional-prefix-sum" class="headerlink" title="2. Two-dimensional prefix sum"></a>2. Two-dimensional prefix sum</h1><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>Given a <code>matrix</code>, and a <code>target</code>, return the number of non-empty submatrices that sum to target.</p>
-<p>A submatrix <code>x1, y1, x2, y2</code> is the set of all cells <code>matrix[x][y]</code> with <code>x1 &lt;= x &lt;= x2</code> and <code>y1 &lt;= y &lt;= y2</code>.</p>
-<p>Two submatrices <code>(x1, y1, x2, y2)</code> and <code>(x1&#39;, y1&#39;, x2&#39;, y2&#39;)</code> are different if they have some coordinate that is different: for example, if <code>x1 != x1&#39;</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: matrix &#x3D; [[0,1,0],[1,1,1],[0,1,0]], target &#x3D; 0</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: The four 1x1 submatrices that only contain 0.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: matrix &#x3D; [[1,-1],[-1,1]], target &#x3D; 0</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: The two 1x2 submatrices, plus the two 2x1 submatrices, plus the 2x2 submatrix.</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong><em>Note:</em></strong></p>
-<ol>
-<li>1 &lt;= matrix.length &lt;= 300</li>
-<li>1 &lt;= matrix[0].length &lt;= 300</li>
-<li>-1000 &lt;= matrix[i] &lt;= 1000</li>
-<li>-10^8 &lt;= target &lt;= 10^8</li>
-</ol>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><p>1 &lt;= matrix.length &lt;= 100</p>
-</li>
-<li><p>1 &lt;= matrix[0].length &lt;= 100</p>
-</li>
-<li><p>-1000 &lt;= matrix[i] &lt;= 1000</p>
-</li>
-<li><p>-10^8 &lt;= target &lt;= 10^8</p>
-</li>
-</ul>
-<h2 id="Thinkings-2"><a href="#Thinkings-2" class="headerlink" title="Thinkings"></a>Thinkings</h2><ol>
-<li><p>For a matrix, what is the prefix sum ?</p>
-<p>sum[x] [y] is the sum of submatrix </p>
-<p>(The upper left corner is matrix[0] [0], the lower right corner is matrix[x] [y])</p>
-<p><img src="/2020/08/18/Cumulative%20Sum/image-20200821114212182.png" alt="image-20200821114212182"></p>
-</li>
-<li><p>How to calculate the sum of all submatrices <strong><em>whose upper left corner are matrix[0] [0]</em></strong> ？</p>
-<p>Step 1. Calculate the prefix sum of each line.</p>
-<p><img src="/2020/08/18/Cumulative%20Sum/image-20200821114122632.png" alt="image-20200821114122632"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Like the one-dimensional prefix sum, </span></span><br><span class="line"><span class="comment">// in order to prevent index out of range and facilitate calculations,</span></span><br><span class="line"><span class="comment">// we add an extra column with all 0s at the forefront.</span></span><br><span class="line"><span class="keyword">int</span> line = matrix.length;</span><br><span class="line"><span class="keyword">int</span> column = matrix[<span class="number">0</span>].length + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span>[][] sum = <span class="keyword">new</span> <span class="keyword">int</span>[line][column]; <span class="comment">// Initialization default is all 0</span></span><br><span class="line">        </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; sum.length; l++)&#123;</span><br><span class="line">  <span class="comment">// start from the second column</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">1</span>; c &lt; sum[<span class="number">0</span>].length; c++)&#123;</span><br><span class="line">    sum[l][c] = sum[l][c - <span class="number">1</span>] + matrix[l][c - <span class="number">1</span>]; <span class="comment">// &quot;c - 1&quot;,because of an extra column.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2020/08/18/Cumulative%20Sum/image-20200821152222749.png" alt="image-20200821152222749"></p>
-<p>Step 2. Using the prefix sum of each line to calculate the sum of submatrix.</p>
-<p><img src="/2020/08/18/Cumulative%20Sum/image-20200821151907141.png" alt="image-20200821151907141"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum[<span class="number">1</span>][<span class="number">2</span>] = sum[<span class="number">1</span>][<span class="number">2</span>] + sum[<span class="number">0</span>][<span class="number">2</span>]; <span class="comment">// green + orange</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum[<span class="number">2</span>][<span class="number">2</span>] = sum[<span class="number">2</span>][<span class="number">2</span>] + sum[<span class="number">1</span>][<span class="number">2</span>] + sum[<span class="number">0</span>][<span class="number">2</span>]; <span class="comment">// blue + green + orange</span></span><br></pre></td></tr></table></figure>
-
-<p>So, to caculate any sum of submatrices <strong><em>whose upper left corner are matrix[0] [0]</em></strong>.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sumOfSubMatrix = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; line; l++)&#123;</span><br><span class="line">    sumOfSubMatrix += sum[l][column]; <span class="comment">// one of submatrices</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>How to find all submatrices ?</p>
-<ol>
-<li><p>Any submatrix needs any two rows and any two columns to form, that is to say, four variables and four nested loops are required.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Use double nested &quot;for&quot; loop to select any two columns</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start &lt; column; start++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> end = start + <span class="number">1</span>; end &lt; column; end++ )&#123;</span><br><span class="line">                  <span class="comment">// ...</span></span><br><span class="line">                  <span class="comment">// Then Use double nested &quot;for&quot; loop to select any two lines</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Convert 2D to 1D</p>
-<p>Step 1 : Use the <strong><em>prefix sum of each row</em></strong> to calculate the matrix sum between the “start” column and “end” column.</p>
-<p><img src="/2020/08/18/Cumulative%20Sum/image-20200821140949968.png" alt="image-20200821140949968"></p>
-<p>Step 2 : Rotate it 90 degrees to the left, <strong><em>it can be regarded as a one-dimensional array.</em></strong></p>
-<p><img src="/2020/08/18/Cumulative%20Sum/image-20200821145142390.png" alt="image-20200821145142390"></p>
-<p>Then the problem is transformed into how many sub-arrays whose sum == target ?</p>
-<p><strong><em>It’s the same with last problem.</em></strong></p>
-<p>Step 3 : In the same way, we can use hashmap to optimize the double nested loop for any two lines, and only need one loop</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sumOfSubMatrix = <span class="number">0</span>;</span><br><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">map.put(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; line; l++)&#123;</span><br><span class="line">  <span class="comment">// prefix sum</span></span><br><span class="line">    sumOfSubMatrix += sum[l][end] - sum[l][start];</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (map.containsKey(sumOfSubMatrix - target))</span><br><span class="line">        count += map.get(sumOfSubMatrix - target);</span><br><span class="line">  </span><br><span class="line">    map.put(sumOfSubMatrix, map.getOrDefault(sumOfSubMatrix, <span class="number">0</span>) + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="Code-2"><a href="#Code-2" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSubmatrixSumTarget</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> line = matrix.length;</span><br><span class="line">        <span class="keyword">int</span> column = matrix[<span class="number">0</span>].length + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] sum = <span class="keyword">new</span> <span class="keyword">int</span>[line][column];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sum.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; sum[<span class="number">0</span>].length; j++)&#123;</span><br><span class="line">                sum[i][j] = sum[i][j - <span class="number">1</span>] + matrix[i][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start &lt; column; start++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> end = start + <span class="number">1</span>; end &lt; column; end++ )&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">int</span> sumOfSubMatrix = <span class="number">0</span>;</span><br><span class="line">                Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">                map.put(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; line; l++)&#123;</span><br><span class="line">                    sumOfSubMatrix += sum[l][end] - sum[l][start];</span><br><span class="line">                    <span class="keyword">if</span> (map.containsKey(sumOfSubMatrix - target))</span><br><span class="line">                        count += map.get(sumOfSubMatrix - target);</span><br><span class="line">                    map.put(sumOfSubMatrix, map.getOrDefault(sumOfSubMatrix, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">                    </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Reference-1"><a href="#Reference-1" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/">https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/</a></p>
-</blockquote>
-<p>​        </p>
-<p>​                                                                        </p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/18/Cumulative%20Sum/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
